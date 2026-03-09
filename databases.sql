@@ -30,7 +30,7 @@ CREATE TABLE `bills` (
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `total` decimal(10,2) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,7 +39,7 @@ CREATE TABLE `bills` (
 
 LOCK TABLES `bills` WRITE;
 /*!40000 ALTER TABLE `bills` DISABLE KEYS */;
-INSERT INTO `bills` VALUES (1,'T22','[{\"id\":27,\"menu_name\":\"Fried rice \",\"quantity\":1,\"price\":\"100.00\"}]','Paid','2026-03-03 08:05:58',110.00),(2,'T11','[{\"id\":19,\"menu_name\":\"Briyani \",\"quantity\":1,\"price\":\"150.00\"}]','Ready','2026-03-03 08:06:54',165.00),(3,'T20','[{\"id\":18,\"menu_name\":\"Fried rice \",\"quantity\":2,\"price\":\"100.00\"}]','Paid','2026-03-03 08:07:49',220.00),(4,'T20','[{\"id\":18,\"menu_name\":\"Fried rice \",\"quantity\":2,\"price\":\"100.00\"}]','Paid','2026-03-03 08:59:18',220.00),(5,'T20','[{\"id\":18,\"menu_name\":\"Fried rice \",\"quantity\":2,\"price\":\"100.00\"}]','Paid','2026-03-03 08:59:39',220.00),(6,'T20','[{\"id\":28,\"menu_name\":\"Chicken parrotta \",\"quantity\":1,\"price\":\"60.00\"},{\"id\":18,\"menu_name\":\"Fried rice \",\"quantity\":2,\"price\":\"100.00\"}]','Ready','2026-03-03 09:10:16',286.00),(7,'T30','[{\"id\":29,\"menu_name\":\"Parrotta \",\"quantity\":1,\"price\":\"50.00\"}]','Paid','2026-03-05 07:24:58',55.00),(8,'T11','[{\"id\":19,\"menu_name\":\"Briyani \",\"quantity\":1,\"price\":\"150.00\"}]','Paid','2026-03-05 07:36:54',165.00),(9,'T23','[{\"id\":24,\"menu_name\":\"Chicken parrotta \",\"quantity\":1,\"price\":\"60.00\"},{\"id\":23,\"menu_name\":\"Noddles \",\"quantity\":1,\"price\":\"100.00\"}]','Ready','2026-03-05 07:37:01',176.00),(10,'T22','[{\"id\":27,\"menu_name\":\"Fried rice \",\"quantity\":1,\"price\":\"100.00\"}]','Paid','2026-03-05 07:37:06',110.00),(11,'T22','[{\"id\":27,\"menu_name\":\"Fried rice \",\"quantity\":1,\"price\":\"100.00\"}]','Ready','2026-03-05 07:37:14',110.00),(12,'T20','[{\"id\":28,\"menu_name\":\"Chicken parrotta \",\"quantity\":1,\"price\":\"60.00\"},{\"id\":18,\"menu_name\":\"Fried rice \",\"quantity\":2,\"price\":\"100.00\"}]','Paid','2026-03-05 07:37:23',286.00);
+INSERT INTO `bills` VALUES (1,'T22','[{\"id\":27,\"menu_name\":\"Fried rice \",\"quantity\":1,\"price\":\"100.00\"}]','Paid','2026-03-03 08:05:58',110.00),(2,'T11','[{\"id\":19,\"menu_name\":\"Briyani \",\"quantity\":1,\"price\":\"150.00\"}]','Ready','2026-03-03 08:06:54',165.00),(3,'T20','[{\"id\":18,\"menu_name\":\"Fried rice \",\"quantity\":2,\"price\":\"100.00\"}]','Paid','2026-03-03 08:07:49',220.00),(4,'T20','[{\"id\":18,\"menu_name\":\"Fried rice \",\"quantity\":2,\"price\":\"100.00\"}]','Paid','2026-03-03 08:59:18',220.00),(5,'T20','[{\"id\":18,\"menu_name\":\"Fried rice \",\"quantity\":2,\"price\":\"100.00\"}]','Paid','2026-03-03 08:59:39',220.00),(6,'T20','[{\"id\":28,\"menu_name\":\"Chicken parrotta \",\"quantity\":1,\"price\":\"60.00\"},{\"id\":18,\"menu_name\":\"Fried rice \",\"quantity\":2,\"price\":\"100.00\"}]','Ready','2026-03-03 09:10:16',286.00),(7,'T30','[{\"id\":29,\"menu_name\":\"Parrotta \",\"quantity\":1,\"price\":\"50.00\"}]','Paid','2026-03-05 07:24:58',55.00),(8,'T11','[{\"id\":19,\"menu_name\":\"Briyani \",\"quantity\":1,\"price\":\"150.00\"}]','Paid','2026-03-05 07:36:54',165.00),(9,'T23','[{\"id\":24,\"menu_name\":\"Chicken parrotta \",\"quantity\":1,\"price\":\"60.00\"},{\"id\":23,\"menu_name\":\"Noddles \",\"quantity\":1,\"price\":\"100.00\"}]','Ready','2026-03-05 07:37:01',176.00),(10,'T22','[{\"id\":27,\"menu_name\":\"Fried rice \",\"quantity\":1,\"price\":\"100.00\"}]','Paid','2026-03-05 07:37:06',110.00),(11,'T22','[{\"id\":27,\"menu_name\":\"Fried rice \",\"quantity\":1,\"price\":\"100.00\"}]','Ready','2026-03-05 07:37:14',110.00),(12,'T20','[{\"id\":28,\"menu_name\":\"Chicken parrotta \",\"quantity\":1,\"price\":\"60.00\"},{\"id\":18,\"menu_name\":\"Fried rice \",\"quantity\":2,\"price\":\"100.00\"}]','Paid','2026-03-05 07:37:23',286.00),(13,'T 25','[{\"id\":30,\"menu_name\":\"Watermelon juice \",\"quantity\":1,\"price\":\"100.00\"}]','Ready','2026-03-06 10:13:00',110.00),(14,'T 25','[{\"id\":30,\"menu_name\":\"Watermelon juice \",\"quantity\":1,\"price\":\"100.00\"}]','Ready','2026-03-06 11:27:05',110.00);
 /*!40000 ALTER TABLE `bills` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -62,7 +62,7 @@ CREATE TABLE `billspay` (
   `total` decimal(10,2) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -71,8 +71,35 @@ CREATE TABLE `billspay` (
 
 LOCK TABLES `billspay` WRITE;
 /*!40000 ALTER TABLE `billspay` DISABLE KEYS */;
-INSERT INTO `billspay` VALUES (1,6,'T20',260.00,10,26.00,42.12,0.00,276.12,'2026-03-04 06:44:21'),(2,6,'T20',260.00,10,26.00,42.12,0.00,276.12,'2026-03-04 06:46:41'),(3,2,'T11',150.00,5,7.50,25.65,0.00,168.15,'2026-03-04 06:49:32'),(4,2,'T11',150.00,5,7.50,25.65,0.00,168.15,'2026-03-04 06:54:27'),(5,6,'T20',260.00,5,13.00,44.46,0.00,291.46,'2026-03-04 12:04:42'),(6,7,'T30',50.00,5,2.50,8.55,0.00,56.05,'2026-03-05 07:25:28'),(7,11,'T22',100.00,0,0.00,18.00,0.00,118.00,'2026-03-05 08:09:29'),(8,11,'T22',100.00,5,5.00,17.10,0.00,112.10,'2026-03-05 08:11:08');
+INSERT INTO `billspay` VALUES (1,6,'T20',260.00,10,26.00,42.12,0.00,276.12,'2026-03-04 06:44:21'),(2,6,'T20',260.00,10,26.00,42.12,0.00,276.12,'2026-03-04 06:46:41'),(3,2,'T11',150.00,5,7.50,25.65,0.00,168.15,'2026-03-04 06:49:32'),(4,2,'T11',150.00,5,7.50,25.65,0.00,168.15,'2026-03-04 06:54:27'),(5,6,'T20',260.00,5,13.00,44.46,0.00,291.46,'2026-03-04 12:04:42'),(6,7,'T30',50.00,5,2.50,8.55,0.00,56.05,'2026-03-05 07:25:28'),(7,11,'T22',100.00,0,0.00,18.00,0.00,118.00,'2026-03-05 08:09:29'),(8,11,'T22',100.00,5,5.00,17.10,0.00,112.10,'2026-03-05 08:11:08'),(9,11,'T22',100.00,5,5.00,17.10,0.00,112.10,'2026-03-06 10:11:20'),(10,11,'T22',100.00,5,5.00,17.10,0.00,112.10,'2026-03-06 10:11:23'),(11,13,'T 25',100.00,5,5.00,17.10,0.00,112.10,'2026-03-06 10:13:47'),(12,13,'T 25',100.00,0,0.00,18.00,0.00,118.00,'2026-03-06 10:14:28');
 /*!40000 ALTER TABLE `billspay` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `inventory`
+--
+
+DROP TABLE IF EXISTS `inventory`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `inventory` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) DEFAULT NULL,
+  `quantity` int DEFAULT NULL,
+  `unit` varchar(20) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `inventory`
+--
+
+LOCK TABLES `inventory` WRITE;
+/*!40000 ALTER TABLE `inventory` DISABLE KEYS */;
+INSERT INTO `inventory` VALUES (1,'Rice',4,'Kg','2026-03-06 09:48:35'),(2,'Onion ',2,'Kg','2026-03-06 09:51:45');
+/*!40000 ALTER TABLE `inventory` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -92,7 +119,7 @@ CREATE TABLE `menu` (
   `available` tinyint(1) DEFAULT NULL,
   `image` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -101,7 +128,7 @@ CREATE TABLE `menu` (
 
 LOCK TABLES `menu` WRITE;
 /*!40000 ALTER TABLE `menu` DISABLE KEYS */;
-INSERT INTO `menu` VALUES (2,'Briyani ','1',150.00,'.',0,1,'1771579969851.jpg'),(11,'Idli ','1',50.00,'.',1,1,'1771584026779.jpg'),(12,'Fried rice ','1',100.00,'.',0,1,'1771589455115.jpg'),(13,'Parrotta ','1',50.00,'.',0,1,'1772017911632.jpg'),(14,'Noddles ','2',100.00,'.',1,1,'1772018026341.jpg'),(15,'Chicken parrotta ','1',60.00,'.',0,0,'1772097878922.jpg'),(16,'Lemon juice ','3',50.00,'.',0,0,'1772098421123.jpg');
+INSERT INTO `menu` VALUES (2,'Briyani ','1',150.00,'.',0,1,'1771579969851.jpg'),(11,'Idli ','1',50.00,'.',1,1,'1771584026779.jpg'),(12,'Fried rice ','1',100.00,'.',0,1,'1771589455115.jpg'),(13,'Parrotta ','1',50.00,'.',0,1,'1772017911632.jpg'),(14,'Noddles ','2',100.00,'.',1,1,'1772018026341.jpg'),(15,'Chicken parrotta ','1',60.00,'.',0,0,'1772097878922.jpg'),(16,'Lemon juice ','3',50.00,'.',0,0,'1772098421123.jpg'),(17,'Mango juice ','3',50.00,'.',0,0,'1772712519903.jpg'),(18,'Watermelon juice ','3',100.00,'Good',0,0,'1772712727120.jpg'),(19,'Watermelon ','3',60.00,'.',0,0,'1772781108649.jpg'),(20,'Water melon ','3',30.00,'.',0,0,'1772784380942.jpg');
 /*!40000 ALTER TABLE `menu` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -120,7 +147,7 @@ CREATE TABLE `orders` (
   `status` varchar(50) DEFAULT 'Pending',
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -129,7 +156,7 @@ CREATE TABLE `orders` (
 
 LOCK TABLES `orders` WRITE;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
-INSERT INTO `orders` VALUES (18,11,12,2,'Ready','2026-02-23 10:16:00'),(19,1,2,1,'Ready','2026-02-23 11:48:06'),(23,14,14,1,'Ready','2026-02-26 07:35:17'),(24,14,15,1,'Ready','2026-02-26 09:25:39'),(26,12,13,1,'Ready','2026-03-02 08:46:55'),(27,13,12,1,'Ready','2026-03-03 07:02:00'),(28,11,15,1,'Ready','2026-03-03 09:09:07'),(29,15,13,1,'Ready','2026-03-05 07:24:26');
+INSERT INTO `orders` VALUES (18,11,12,2,'Ready','2026-02-23 10:16:00'),(19,1,2,1,'Ready','2026-02-23 11:48:06'),(23,14,14,1,'Ready','2026-02-26 07:35:17'),(24,14,15,1,'Ready','2026-02-26 09:25:39'),(26,12,13,1,'Ready','2026-03-02 08:46:55'),(27,13,12,1,'Ready','2026-03-03 07:02:00'),(28,11,15,1,'Ready','2026-03-03 09:09:07'),(29,15,13,1,'Ready','2026-03-05 07:24:26'),(30,16,18,1,'Ready','2026-03-06 10:12:23');
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -224,7 +251,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'admin','9876543210','admin@gmail.com','$2b$10$/OG27vLLgppw0V7mFh3VU.lk9BhaMJyExpzvUFtDY.SHe0jcC7Wee','admin',1,'2026-02-26 08:46:16',NULL),(2,'smith','9856325689','smith@gmail.com','$2b$10$vDPb/UUs71Y9dxAw.CRSWOZpzVVyrfcVa.TrNSz7DbRjhw98LddIG','waiter',1,'2026-02-26 08:51:40',NULL),(3,'Manager','9856245869','manager@gmail.com','$2b$10$.aNv4YYnzhlF8rLNDaCz4O/VStMouVz3Mphr4K8YO2D8VSuctpqYu','manager',1,'2026-02-26 08:56:57',NULL),(4,'ravi','5623895698','ravi10@gmail.com','$2b$10$56BI50aLbPgdXFQHL6qD7.suktMJwGYbfFv/kb8V1pCQmN418IgCS','chef',1,'2026-02-26 08:58:01',NULL),(5,'Siva','9875698756','siva@gmail.com','$2b$10$3lvqwW01KN8gRUWiCBRLtOK7HvYj./wQWtqmyIZNIS0Qilm8fqh6K','cashier',0,'2026-02-26 08:58:34',NULL),(6,'Ajith','9856235689','ajith@gmail.com','$2b$10$y5Y1JRrkCO/LNgIBVymQf.iYkiIucks69GaiLs13MDuWYWqt1gLT6','waiter',1,'2026-03-05 07:56:28',NULL);
+INSERT INTO `user` VALUES (1,'admin','9876543210','rayesharayesha61@gmail.com','$2b$10$ZusuJQaE0QchkXuSMbOd5eXnvHTPs6D5WSg/LF2RRsmoc1ccuxOUe','admin',1,'2026-02-26 08:46:16',NULL),(2,'smith','9856325689','smith@gmail.com','$2b$10$vDPb/UUs71Y9dxAw.CRSWOZpzVVyrfcVa.TrNSz7DbRjhw98LddIG','waiter',1,'2026-02-26 08:51:40',NULL),(3,'Manager','9856245869','manager@gmail.com','$2b$10$.aNv4YYnzhlF8rLNDaCz4O/VStMouVz3Mphr4K8YO2D8VSuctpqYu','manager',1,'2026-02-26 08:56:57',NULL),(4,'ravi','5623895698','ravi10@gmail.com','$2b$10$56BI50aLbPgdXFQHL6qD7.suktMJwGYbfFv/kb8V1pCQmN418IgCS','chef',1,'2026-02-26 08:58:01',NULL),(5,'Siva','9875698756','siva@gmail.com','$2b$10$3lvqwW01KN8gRUWiCBRLtOK7HvYj./wQWtqmyIZNIS0Qilm8fqh6K','cashier',1,'2026-02-26 08:58:34',NULL),(6,'Ajith','9856235689','ajith@gmail.com','$2b$10$y5Y1JRrkCO/LNgIBVymQf.iYkiIucks69GaiLs13MDuWYWqt1gLT6','waiter',1,'2026-03-05 07:56:28',NULL);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -237,4 +264,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-03-05 14:19:49
+-- Dump completed on 2026-03-09 12:19:57

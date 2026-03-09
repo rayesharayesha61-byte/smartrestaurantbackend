@@ -27,7 +27,97 @@ db.connect(err => {
 bcrypt.hash("123456", 10).then(hash => {
   console.log(hash);
 });
+const nodemailer = require("nodemailer");
 
+let otpStore = {}; // temporary store
+
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: "rayesharayesha61@gmail.com",
+    pass: "hzzhenvbdatuuddj"
+  },
+  tls:{
+    rejectUnauthorized: false
+  }
+});
+app.post("/api/forgot-password", (req, res) => {
+
+  const { email } = req.body;
+
+  const sql = "SELECT * FROM user WHERE email=?";
+
+  db.query(sql, [email], (err, result) => {
+
+    if (result.length === 0) {
+      return res.json({ success:false, message:"Email not found" });
+    }
+
+    const otp = Math.floor(100000 + Math.random() * 900000);
+
+    otpStore[email] = otp;
+
+    const mailOptions = {
+      from: "rayeshrayesha61@gmail.com",
+      to: email,
+      subject: "Password Reset OTP",
+      text: `Your OTP is ${otp}`
+    };
+
+    transporter.sendMail(mailOptions, (error, info) => {
+
+      if(error){
+        console.log(error);
+        return res.json({ success:false });
+      }
+
+      res.json({ success:true, message:"OTP sent to email" });
+
+    });
+
+  });
+
+});app.post("/api/verify-otp", (req,res)=>{
+
+const {email, otp} = req.body;
+
+if(otpStore[email] == otp){
+res.json({success:true});
+}
+else{
+res.json({success:false, message:"Invalid OTP"});
+}
+
+});
+app.post("/api/reset-password", async (req,res)=>{
+
+const {email, otp, password} = req.body;
+
+if(otpStore[email] != otp){
+return res.json({success:false, message:"Invalid OTP"});
+}
+
+const hashed = await bcrypt.hash(password,10);
+
+db.query(
+"UPDATE user SET password=? WHERE email=?",
+[hashed, email],
+(err,result)=>{
+
+if(err){
+return res.json({success:false});
+}
+
+delete otpStore[email];
+
+res.json({
+success:true,
+message:"Password updated"
+});
+
+});
+
+});
 // Storage setup
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -306,37 +396,54 @@ app.get("/api/orders", (req, res) => {
     res.json(results);
   });
 });
+// app.post("/create-bill", (req, res) => {
+//   const order = req.body;
+
+//   const subtotal = order.items.reduce((sum, item) => {
+//     return sum + item.quantity * item.price;
+//   }, 0);
+
+//   const total = subtotal + subtotal * 0.1;
+
+//   const sql = `
+//     INSERT INTO bills (table_number, items, status, total)
+//     VALUES (?, ?, ?, ?)
+//   `;
+
+//   db.query(
+//     sql,
+//     [
+//       order.table_number,
+//       JSON.stringify(order.items),
+//       "Ready",
+//       total
+//     ],
+//     (err, result) => {
+//       if (err) {
+//         console.log("Bill Insert Error:", err);
+//         return res.status(500).json({ success: false });
+//       }
+
+//       res.json({ success: true });
+//     }
+//   );
+// });
 app.post("/create-bill", (req, res) => {
-  const order = req.body;
 
-  const subtotal = order.items.reduce((sum, item) => {
-    return sum + item.quantity * item.price;
-  }, 0);
+  const { id } = req.body;
 
-  const total = subtotal + subtotal * 0.1;
+  const sql = "UPDATE orders SET status='Billed' WHERE id=?";
 
-  const sql = `
-    INSERT INTO bills (table_number, items, status, total)
-    VALUES (?, ?, ?, ?)
-  `;
+  db.query(sql, [id], (err, result) => {
 
-  db.query(
-    sql,
-    [
-      order.table_number,
-      JSON.stringify(order.items),
-      "Ready",
-      total
-    ],
-    (err, result) => {
-      if (err) {
-        console.log("Bill Insert Error:", err);
-        return res.status(500).json({ success: false });
-      }
-
-      res.json({ success: true });
+    if(err){
+      res.json({success:false});
+    } else {
+      res.json({success:true});
     }
-  );
+
+  });
+
 });
 // app.post("/api/generate-bill", (req, res) => {
 //   const {
@@ -618,6 +725,76 @@ app.get("/api/tables/available-count", (req, res) => {
       available: result[0].available
     });
   });
+});
+app.get("/api/orders/queue-count", (req,res)=>{
+
+const sql="SELECT COUNT(*) AS total FROM orders WHERE status='Pending'";
+
+db.query(sql,(err,result)=>{
+
+if(err){
+return res.status(500).json({success:false});
+}
+
+res.json({
+success:true,
+queue:result[0].total
+});
+
+});
+
+});
+app.get("/api/orders-tables", (req, res) => {
+  const sql = "SELECT * FROM tables WHERE status='Occupied'";
+  db.query(sql, (err, result) => {
+    if (err) {
+      res.json({ success:false });
+    } else {
+      res.json({ success:true, data: result });
+    }
+  });
+});
+app.get("/api/inventory", (req,res)=>{
+db.query("SELECT * FROM inventory",(err,result)=>{
+if(err) res.status(500).json(err);
+else res.json(result);
+});
+});
+app.post("/api/inventory",(req,res)=>{
+
+const {name,quantity,unit} = req.body;
+
+const qty = parseInt(quantity);   // convert to number
+
+db.query(
+"INSERT INTO inventory(name,quantity,unit) VALUES(?,?,?)",
+[name, qty, unit],
+(err,result)=>{
+if(err){
+console.log("Inventory Insert Error:",err);
+res.status(500).json(err);
+}
+else res.json({success:true});
+});
+
+});
+app.put("/api/inventory/:id",(req,res)=>{
+
+const { quantity } = req.body;
+
+const qty = parseInt(quantity);   // convert to number
+
+db.query(
+"UPDATE inventory SET quantity=? WHERE id=?",
+[qty, req.params.id],
+(err,result)=>{
+if(err){
+console.log("Update Stock Error:", err);
+res.status(500).json(err);
+}
+else res.json({success:true});
+});
+
 });
 // app.listen(5000, () => {
 //   console.log("Server running on port 5000");
