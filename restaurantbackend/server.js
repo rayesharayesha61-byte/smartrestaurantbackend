@@ -77,7 +77,8 @@ app.post("/api/forgot-password", (req, res) => {
 
   });
 
-});app.post("/api/verify-otp", (req,res)=>{
+});
+app.post("/api/verify-otp", (req,res)=>{
 
 const {email, otp} = req.body;
 
@@ -196,54 +197,6 @@ app.post('/api/staff/create', upload.single("profile_image"), async (req, res) =
   }
 });
 
-// app.post('/api/staff/create', upload.single("profile_image"), (req, res) => {
-//   const { full_name, mobile, email, password, role, is_active } = req.body;
-
-//   if (!full_name || !mobile || !email || !password || !role) {
-//     return res.status(400).json({ success: false, message: "All fields required" });
-//   }
-
-//   const profile_image = req.file ? req.file.filename : null;
-//   const isActiveValue = (is_active === 'true' || is_active === true) ? 1 : 0;
-
-//   const insertSql = `
-//     INSERT INTO user (full_name, mobile, email, password, role, is_active, profile_image)
-//     VALUES (?, ?, ?, ?, ?, ?, ?)
-//   `;
-
-//   db.query(insertSql, [full_name, mobile, email, password, role, isActiveValue, profile_image], (err, result) => {
-//     if (err) {
-//       console.log("DB INSERT ERROR:", err);
-//       return res.status(500).json({ success: false, message: "Database insert failed", error: err });
-//     }
-
-//     res.json({ success: true, message: "Staff account created successfully" });
-//   });
-// });
-// //  LOGIN 
-// app.post('/login', (req, res) => {
-//   const { email, password } = req.body;
-
-//   const sql = "SELECT * FROM user WHERE email = ? AND password = ?";
-  
-//   db.query(sql, [email, password], (err, result) => {
-
-//     if (err) return res.status(500).json(err);
-
-//     if (result.length > 0) {
-//       res.json({
-//         success: true,
-//         role: result[0].role,
-//         name: result[0].full_name
-//       });
-//     } else {
-//       res.json({
-//         success: false,
-//         message: "Invalid credentials"
-//       });
-//     }
-//   });
-// });
 
 // Create Table Route
 app.post("/api/tables/create", (req, res) => {
@@ -347,30 +300,7 @@ const updateTableSql =
     res.json({ success: true });
   });
 });
-// GET ORDERS 
-// app.get("/api/orders", (req, res) => {
 
-//   const sql = `
-  
-//     SELECT o.id, o.quantity, o.status,
-//        o.created_at,
-//        t.table_number,
-//        m.name AS menu_name
-//        m.price AS price
-//     FROM orders o
-//     JOIN tables t ON o.table_id = t.id
-//     JOIN menu m ON o.menu_id = m.id
-//     ORDER BY o.created_at DESC
-//   `;
-
-//   db.query(sql, (err, results) => {
-//     if (err) {
-//       console.log("FETCH ORDER ERROR:", err);
-//       return res.status(500).json({ success: false });
-//     }
-//     res.json(results);
-//   });
-// });
 app.get("/api/orders", (req, res) => {
 
   const sql = `
@@ -396,43 +326,12 @@ app.get("/api/orders", (req, res) => {
     res.json(results);
   });
 });
-// app.post("/create-bill", (req, res) => {
-//   const order = req.body;
 
-//   const subtotal = order.items.reduce((sum, item) => {
-//     return sum + item.quantity * item.price;
-//   }, 0);
-
-//   const total = subtotal + subtotal * 0.1;
-
-//   const sql = `
-//     INSERT INTO bills (table_number, items, status, total)
-//     VALUES (?, ?, ?, ?)
-//   `;
-
-//   db.query(
-//     sql,
-//     [
-//       order.table_number,
-//       JSON.stringify(order.items),
-//       "Ready",
-//       total
-//     ],
-//     (err, result) => {
-//       if (err) {
-//         console.log("Bill Insert Error:", err);
-//         return res.status(500).json({ success: false });
-//       }
-
-//       res.json({ success: true });
-//     }
-//   );
-// });
 app.post("/create-bill", (req, res) => {
 
   const { id } = req.body;
 
-  const sql = "UPDATE orders SET status='Billed' WHERE id=?";
+  const sql = "UPDATE orders SET status='Ready' WHERE id=?";
 
   db.query(sql, [id], (err, result) => {
 
@@ -445,60 +344,7 @@ app.post("/create-bill", (req, res) => {
   });
 
 });
-// app.post("/api/generate-bill", (req, res) => {
-//   const {
-//     order_id,
-//     table_number,
-//     subtotal,
-//     discount_percent,
-//     discount_amount,
-//     gst,
-//     tip,
-//     total,
-//   } = req.body;
 
-//   const billSql = `
-//     INSERT INTO billspay 
-//     (order_id, table_number, subtotal, discount_percent, discount_amount, gst, tip, total)
-//     VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-//   `;
-
-//   db.query(
-//     billSql,
-//     [
-//       order_id,
-//       table_number,
-//       subtotal,
-//       discount_percent,
-//       discount_amount,
-//       gst,
-//       tip,
-//       total,
-//     ],
-//     (err, result) => {
-//       if (err) {
-//         console.log("Bill Insert Error:", err);
-//         return res.status(500).json({ error: "Bill creation failed" });
-//       }
-
-//       // Update order status to Paid
-//       db.query(
-//         "UPDATE orders SET status='Paid' WHERE id=?",
-//         [order_id],
-//         (err2) => {
-//           if (err2) {
-//             console.log("Order Update Error:", err2);
-//           }
-
-//           res.json({
-//             message: "Bill generated successfully",
-//             bill_id: result.insertId,
-//           });
-//         }
-//       );
-//     }
-//   );
-// });
 app.post("/api/generate-bill", (req, res) => {
   const {
     order_id,
@@ -571,18 +417,36 @@ app.get("/admin-total-sales", (req, res) => {
   });
 
 });
+
 app.get("/get-bills", (req, res) => {
- const sql = "SELECT * FROM bills WHERE status='Ready' ORDER BY id DESC";
+
+  const sql = `
+  SELECT 
+    o.id,
+    o.status,
+    t.table_number,
+    m.name AS menu_name,
+    m.price,
+    o.quantity
+  FROM orders o
+  JOIN tables t ON o.table_id = t.id
+  JOIN menu m ON o.menu_id = m.id
+  ORDER BY o.id DESC
+  `;
 
   db.query(sql, (err, results) => {
+
     if (err) {
       console.log("Fetch Bills Error:", err);
       return res.status(500).json([]);
     }
 
     res.json(results);
+
   });
+
 });
+
 app.get("/bill-history", (req, res) => {
 
   const sql = "SELECT * FROM bills WHERE status='Paid' ORDER BY id DESC";
@@ -695,22 +559,7 @@ app.get("/api/reservations/by-date/:date", (req, res) => {
     res.json({ success: true, data: result });
   });
 });
-// app.get("/available-tables", (req, res) => {
 
-//   const sql = "SELECT * FROM tables WHERE status='Available'";
-
-//   db.query(sql, (err, result) => {
-
-//     if (err) {
-//       console.log(err);
-//       res.status(500).json({error:"Database error"});
-//     } else {
-//       res.json(result);
-//     }
-
-//   });
-
-// });
 app.get("/api/tables/available-count", (req, res) => {
   const sql = "SELECT COUNT(*) AS available FROM tables WHERE status = 'Available'";
 

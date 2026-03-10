@@ -62,7 +62,7 @@ CREATE TABLE `billspay` (
   `total` decimal(10,2) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -71,7 +71,7 @@ CREATE TABLE `billspay` (
 
 LOCK TABLES `billspay` WRITE;
 /*!40000 ALTER TABLE `billspay` DISABLE KEYS */;
-INSERT INTO `billspay` VALUES (1,6,'T20',260.00,10,26.00,42.12,0.00,276.12,'2026-03-04 06:44:21'),(2,6,'T20',260.00,10,26.00,42.12,0.00,276.12,'2026-03-04 06:46:41'),(3,2,'T11',150.00,5,7.50,25.65,0.00,168.15,'2026-03-04 06:49:32'),(4,2,'T11',150.00,5,7.50,25.65,0.00,168.15,'2026-03-04 06:54:27'),(5,6,'T20',260.00,5,13.00,44.46,0.00,291.46,'2026-03-04 12:04:42'),(6,7,'T30',50.00,5,2.50,8.55,0.00,56.05,'2026-03-05 07:25:28'),(7,11,'T22',100.00,0,0.00,18.00,0.00,118.00,'2026-03-05 08:09:29'),(8,11,'T22',100.00,5,5.00,17.10,0.00,112.10,'2026-03-05 08:11:08'),(9,11,'T22',100.00,5,5.00,17.10,0.00,112.10,'2026-03-06 10:11:20'),(10,11,'T22',100.00,5,5.00,17.10,0.00,112.10,'2026-03-06 10:11:23'),(11,13,'T 25',100.00,5,5.00,17.10,0.00,112.10,'2026-03-06 10:13:47'),(12,13,'T 25',100.00,0,0.00,18.00,0.00,118.00,'2026-03-06 10:14:28');
+INSERT INTO `billspay` VALUES (1,6,'T20',260.00,10,26.00,42.12,0.00,276.12,'2026-03-04 06:44:21'),(2,6,'T20',260.00,10,26.00,42.12,0.00,276.12,'2026-03-04 06:46:41'),(3,2,'T11',150.00,5,7.50,25.65,0.00,168.15,'2026-03-04 06:49:32'),(4,2,'T11',150.00,5,7.50,25.65,0.00,168.15,'2026-03-04 06:54:27'),(5,6,'T20',260.00,5,13.00,44.46,0.00,291.46,'2026-03-04 12:04:42'),(6,7,'T30',50.00,5,2.50,8.55,0.00,56.05,'2026-03-05 07:25:28'),(7,11,'T22',100.00,0,0.00,18.00,0.00,118.00,'2026-03-05 08:09:29'),(8,11,'T22',100.00,5,5.00,17.10,0.00,112.10,'2026-03-05 08:11:08'),(9,11,'T22',100.00,5,5.00,17.10,0.00,112.10,'2026-03-06 10:11:20'),(10,11,'T22',100.00,5,5.00,17.10,0.00,112.10,'2026-03-06 10:11:23'),(11,13,'T 25',100.00,5,5.00,17.10,0.00,112.10,'2026-03-06 10:13:47'),(12,13,'T 25',100.00,0,0.00,18.00,0.00,118.00,'2026-03-06 10:14:28'),(13,36,'T31',100.00,5,5.00,17.10,0.00,112.10,'2026-03-10 07:52:46'),(14,36,'T31',100.00,5,5.00,17.10,0.00,112.10,'2026-03-10 07:52:51'),(15,36,'T31',100.00,5,5.00,17.10,0.00,112.10,'2026-03-10 07:52:59'),(16,35,'T31',300.00,0,0.00,54.00,0.00,354.00,'2026-03-10 07:56:33'),(17,37,'T14',150.00,0,0.00,27.00,0.00,177.00,'2026-03-10 08:00:38'),(18,34,'T22',150.00,0,0.00,27.00,0.00,177.00,'2026-03-10 08:16:01');
 /*!40000 ALTER TABLE `billspay` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -119,7 +119,7 @@ CREATE TABLE `menu` (
   `available` tinyint(1) DEFAULT NULL,
   `image` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -128,7 +128,7 @@ CREATE TABLE `menu` (
 
 LOCK TABLES `menu` WRITE;
 /*!40000 ALTER TABLE `menu` DISABLE KEYS */;
-INSERT INTO `menu` VALUES (2,'Briyani ','1',150.00,'.',0,1,'1771579969851.jpg'),(11,'Idli ','1',50.00,'.',1,1,'1771584026779.jpg'),(12,'Fried rice ','1',100.00,'.',0,1,'1771589455115.jpg'),(13,'Parrotta ','1',50.00,'.',0,1,'1772017911632.jpg'),(14,'Noddles ','2',100.00,'.',1,1,'1772018026341.jpg'),(15,'Chicken parrotta ','1',60.00,'.',0,0,'1772097878922.jpg'),(16,'Lemon juice ','3',50.00,'.',0,0,'1772098421123.jpg'),(17,'Mango juice ','3',50.00,'.',0,0,'1772712519903.jpg'),(18,'Watermelon juice ','3',100.00,'Good',0,0,'1772712727120.jpg'),(19,'Watermelon ','3',60.00,'.',0,0,'1772781108649.jpg'),(20,'Water melon ','3',30.00,'.',0,0,'1772784380942.jpg');
+INSERT INTO `menu` VALUES (2,'Briyani ','1',150.00,'.',0,1,'1771579969851.jpg'),(11,'Idli ','1',50.00,'.',1,1,'1771584026779.jpg'),(12,'Fried rice ','1',100.00,'.',0,1,'1771589455115.jpg'),(13,'Parrotta ','1',50.00,'.',0,1,'1772017911632.jpg'),(14,'Noddles ','2',100.00,'.',1,1,'1772018026341.jpg'),(15,'Chicken parrotta ','1',60.00,'.',0,0,'1772097878922.jpg'),(16,'Lemon juice ','3',50.00,'.',0,0,'1772098421123.jpg'),(17,'Mango juice ','3',50.00,'.',0,0,'1772712519903.jpg'),(18,'Watermelon juice ','3',100.00,'Good',0,0,'1772712727120.jpg'),(19,'Watermelon ','3',60.00,'.',0,0,'1772781108649.jpg'),(20,'Water melon ','3',30.00,'.',0,0,'1772784380942.jpg'),(21,'Thosa','4',50.00,'Good',0,0,'1773041982945.jpg'),(22,'Thosa','1',60.00,'.',0,0,'1773124647771.jpg'),(23,'Chicken biryani ','5',150.00,'Nice ',0,0,'1773125667446.jpg');
 /*!40000 ALTER TABLE `menu` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -147,7 +147,7 @@ CREATE TABLE `orders` (
   `status` varchar(50) DEFAULT 'Pending',
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -156,7 +156,7 @@ CREATE TABLE `orders` (
 
 LOCK TABLES `orders` WRITE;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
-INSERT INTO `orders` VALUES (18,11,12,2,'Ready','2026-02-23 10:16:00'),(19,1,2,1,'Ready','2026-02-23 11:48:06'),(23,14,14,1,'Ready','2026-02-26 07:35:17'),(24,14,15,1,'Ready','2026-02-26 09:25:39'),(26,12,13,1,'Ready','2026-03-02 08:46:55'),(27,13,12,1,'Ready','2026-03-03 07:02:00'),(28,11,15,1,'Ready','2026-03-03 09:09:07'),(29,15,13,1,'Ready','2026-03-05 07:24:26'),(30,16,18,1,'Ready','2026-03-06 10:12:23');
+INSERT INTO `orders` VALUES (18,11,12,2,'Ready','2026-02-23 10:16:00'),(19,1,2,1,'Ready','2026-02-23 11:48:06'),(23,14,14,1,'Ready','2026-02-26 07:35:17'),(24,14,15,1,'Ready','2026-02-26 09:25:39'),(26,12,13,1,'Ready','2026-03-02 08:46:55'),(27,13,12,1,'Ready','2026-03-03 07:02:00'),(28,11,15,1,'Ready','2026-03-03 09:09:07'),(29,15,13,1,'Ready','2026-03-05 07:24:26'),(30,16,18,1,'Ready','2026-03-06 10:12:23'),(31,16,21,1,'Ready','2026-03-09 07:43:43'),(32,16,21,1,'Pending','2026-03-10 06:56:39'),(33,15,23,1,'Ready','2026-03-10 07:03:02'),(34,13,23,1,'Paid','2026-03-10 07:07:35'),(35,17,23,2,'Paid','2026-03-10 07:12:40'),(36,17,11,2,'Paid','2026-03-10 07:14:36'),(37,4,23,1,'Paid','2026-03-10 07:59:54');
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -210,7 +210,7 @@ CREATE TABLE `tables` (
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `table_number` (`table_number`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -219,7 +219,7 @@ CREATE TABLE `tables` (
 
 LOCK TABLES `tables` WRITE;
 /*!40000 ALTER TABLE `tables` DISABLE KEYS */;
-INSERT INTO `tables` VALUES (1,'T11',5,'Outdoor','Reserved','-','2026-02-19 09:51:11'),(2,'T12',5,'High-top','Occupied','.','2026-02-19 10:09:23'),(3,'T13',5,'Outdoor','Reserved','.','2026-02-19 11:48:12'),(4,'T14',5,'Outdoor','Available','.','2026-02-19 12:06:44'),(6,'T15',5,'High-top','Reserved','.','2026-02-19 16:18:13'),(10,'T18',5,'Booth','Occupied','.','2026-02-21 09:24:42'),(11,'T20',3,'Indoor','Occupied','.','2026-02-21 09:36:22'),(12,'T21',5,'Outdoor','Occupied','.','2026-02-25 08:27:07'),(13,'T22',4,'Indoor','Available','.','2026-02-25 08:27:26'),(14,'T23',1,'Indoor','Occupied','.','2026-02-25 08:27:36'),(15,'T30',4,'Indoor','Available','','2026-03-05 06:45:47'),(16,'T 25',4,'Indoor','Available','.','2026-03-05 08:19:28');
+INSERT INTO `tables` VALUES (1,'T11',5,'Outdoor','Reserved','-','2026-02-19 09:51:11'),(2,'T12',5,'High-top','Occupied','.','2026-02-19 10:09:23'),(3,'T13',5,'Outdoor','Reserved','.','2026-02-19 11:48:12'),(4,'T14',5,'Outdoor','Available','.','2026-02-19 12:06:44'),(6,'T15',5,'High-top','Reserved','.','2026-02-19 16:18:13'),(10,'T18',5,'Booth','Occupied','.','2026-02-21 09:24:42'),(11,'T20',3,'Indoor','Occupied','.','2026-02-21 09:36:22'),(12,'T21',5,'Outdoor','Occupied','.','2026-02-25 08:27:07'),(13,'T22',4,'Indoor','Available','.','2026-02-25 08:27:26'),(14,'T23',1,'Indoor','Occupied','.','2026-02-25 08:27:36'),(15,'T30',4,'Indoor','Occupied','','2026-03-05 06:45:47'),(16,'T 25',4,'Indoor','Occupied','.','2026-03-05 08:19:28'),(17,'T31',4,'Indoor','Available','.','2026-03-10 07:12:17');
 /*!40000 ALTER TABLE `tables` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -264,4 +264,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-03-09 12:19:57
+-- Dump completed on 2026-03-10 14:13:43
