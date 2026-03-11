@@ -447,9 +447,10 @@ app.get("/get-bills", (req, res) => {
 
 });
 
+
 app.get("/bill-history", (req, res) => {
 
-  const sql = "SELECT * FROM bills WHERE status='Paid' ORDER BY id DESC";
+  const sql = "SELECT * FROM billspay ORDER BY id DESC";
 
   db.query(sql, (err, result) => {
 
