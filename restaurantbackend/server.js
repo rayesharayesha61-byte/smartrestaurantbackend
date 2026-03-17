@@ -400,24 +400,69 @@ app.post("/api/generate-bill", (req, res) => {
     }
   );
 });
+// app.get("/admin-total-sales", (req, res) => {
+
+//   const sql = `
+//     SELECT SUM(total) AS total_sales
+//     FROM billspay
+//   `;
+
+//   db.query(sql, (err, result) => {
+//     if (err) {
+//       console.log("Total Sales Error:", err);
+//       return res.status(500).json({ message: "Error fetching total sales" });
+//     }
+
+//     res.json(result[0]);
+//   });
+
+// });
 app.get("/admin-total-sales", (req, res) => {
 
-  const sql = `
-    SELECT SUM(total) AS total_sales
-    FROM billspay
-  `;
+const todaySql = `
+SELECT SUM(total) AS today_sales
+FROM billspay
+WHERE DATE(created_at) = CURDATE()
+`;
 
-  db.query(sql, (err, result) => {
-    if (err) {
-      console.log("Total Sales Error:", err);
-      return res.status(500).json({ message: "Error fetching total sales" });
-    }
+const yesterdaySql = `
+SELECT SUM(total) AS yesterday_sales
+FROM billspay
+WHERE DATE(created_at) = CURDATE() - INTERVAL 1 DAY
+`;
 
-    res.json(result[0]);
-  });
+db.query(todaySql,(err,todayResult)=>{
+
+if(err){
+return res.status(500).json({success:false});
+}
+
+db.query(yesterdaySql,(err,yesterdayResult)=>{
+
+if(err){
+return res.status(500).json({success:false});
+}
+
+const today = todayResult[0].today_sales || 0;
+const yesterday = yesterdayResult[0].yesterday_sales || 0;
+
+let growth = 0;
+
+if(yesterday > 0){
+growth = ((today - yesterday) / yesterday) * 100;
+}
+
+res.json({
+success:true,
+total_sales: today,
+growth: growth.toFixed(2)
+});
 
 });
 
+});
+
+});
 app.get("/get-bills", (req, res) => {
 
   const sql = `
@@ -560,9 +605,79 @@ app.get("/api/reservations/by-date/:date", (req, res) => {
     res.json({ success: true, data: result });
   });
 });
+app.get("/api/reservations/today-count", (req, res) => {
 
+  const sql = `
+    SELECT COUNT(*) AS total 
+    FROM reservations
+    WHERE DATE(reservation_date) = CURDATE()
+  `;
+
+  db.query(sql, (err, result) => {
+
+    if (err) {
+      console.log(err);
+      return res.status(500).json({ success:false });
+    }
+
+    res.json({
+      success:true,
+      total: result[0].total
+    });
+
+  });
+
+});
+app.get("/api/reports/today", (req, res) => {
+
+const sql = `
+SELECT
+
+IFNULL((SELECT SUM(total) 
+FROM billspay 
+WHERE DATE(created_at)=CURDATE()),0) AS daySales,
+
+IFNULL((SELECT SUM(total) 
+FROM billspay 
+WHERE YEARWEEK(created_at,1)=YEARWEEK(CURDATE(),1)),0) AS weekSales,
+
+IFNULL((SELECT SUM(total) 
+FROM billspay 
+WHERE MONTH(created_at)=MONTH(CURDATE()) 
+AND YEAR(created_at)=YEAR(CURDATE())),0) AS monthSales,
+
+(SELECT COUNT(*) FROM orders 
+WHERE DATE(created_at)=CURDATE()) AS orders,
+
+(SELECT COUNT(*) FROM reservations 
+WHERE DATE(created_at)=CURDATE()) AS reservations
+
+`;
+
+db.query(sql,(err,result)=>{
+
+if(err){
+console.log(err);
+return res.status(500).json({success:false});
+}
+
+res.json({
+success:true,
+data:{
+sales: result[0].daySales,
+orders: result[0].orders,
+reservations: result[0].reservations,
+daySales: result[0].daySales,
+weekSales: result[0].weekSales,
+monthSales: result[0].monthSales
+}
+});
+
+});
+
+});
 app.get("/api/tables/available-count", (req, res) => {
-  const sql = "SELECT COUNT(*) AS available FROM tables WHERE status = 'Available'";
+  const sql = "SELECT COUNT(*) AS available FROM tables WHERE status = 'Occupied'";
 
   db.query(sql, (err, result) => {
     if (err) {
